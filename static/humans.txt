@@ -5,7 +5,7 @@ Role: Founder / 全栈黑客
 Motto: 以键盘为剑，守护而非破坏。
 
 /* COMPANY */
-Name: 竺砥科技 / AIRDB Tech
+Name: 竺砥科技 / AIRDB TECH
 Mission: 从 0 到 1 攻坚硬核底层技术，止于可用与可落地。
 Scope: 0 → 1 only. 1 → N is somebody else's process.
 

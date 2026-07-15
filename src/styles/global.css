@@ -235,6 +235,11 @@ main { position: relative; z-index: 1; }
 .hero-stats dd { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
 .hero p.hero-note { margin: 0; font-size: 12.5px; color: var(--faint); }
 
+@media (max-width: 880px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-term { max-width: 560px; }
+}
+
 /* staggered load reveal */
 @media (prefers-reduced-motion: no-preference) {
   .hero-copy > * { opacity: 0; transform: translateY(14px); animation: rise .7s cubic-bezier(.2, .7, .2, 1) forwards; }
@@ -276,7 +281,7 @@ main { position: relative; z-index: 1; }
 
 /* ---------- boundary diagram ---------- */
 .rail { margin-top: clamp(36px, 5vw, 56px); }
-.rail-track { display: grid; grid-template-columns: minmax(0, 13fr) minmax(0, 7fr); }
+.rail-track { display: grid; grid-template-columns: minmax(0, 13fr) auto minmax(0, 7fr); }
 .rail-side { padding: 26px clamp(18px, 2.6vw, 34px) 30px; }
 .rail-side.ours { background: var(--green-ghost); border: 1px solid var(--line-strong); }
 .rail-side.theirs { border: 1px dashed var(--line-strong); border-left: none; opacity: .78; }
