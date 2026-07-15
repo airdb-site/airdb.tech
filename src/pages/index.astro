@@ -1,0 +1,441 @@
+---
+import "../styles/global.css";
+
+// 终端打字机的行数据：静态渲染一份（无 JS / SEO 可读），JS 允许动效时重打一遍
+type Seg = { cls: "p" | "cmd" | "out" | "hi"; text: string };
+const termLines: Seg[][] = [
+  [{ cls: "p", text: "$ " }, { cls: "cmd", text: "whoami" }],
+  [{ cls: "out", text: "竺砥科技 · AIRDB.TECH" }],
+  [{ cls: "p", text: "$ " }, { cls: "cmd", text: "cat /etc/mission" }],
+  [
+    { cls: "out", text: "从 0 到 1 攻坚底层技术，证明" },
+    { cls: "hi", text: "可用、可落地" },
+    { cls: "out", text: "，然后交棒。" },
+  ],
+  [{ cls: "p", text: "$ " }, { cls: "cmd", text: "ls /research" }],
+  [{ cls: "out", text: "ai/  cloud-infra/  blockchain/  bigdata/  security/" }],
+  [{ cls: "p", text: "$ " }, { cls: "cmd", text: "echo $SCOPE" }],
+  [
+    { cls: "out", text: "0 → 1 · " },
+    { cls: "hi", text: "1 → N 不在本进程" },
+  ],
+];
+
+const fields = [
+  {
+    code: "F/01",
+    name: "人工智能",
+    en: "AI",
+    desc: "人工智能相关的基础研究与系统——从模型系统到推理基础设施的原创性攻坚。",
+  },
+  {
+    code: "F/02",
+    name: "云与基础设施",
+    en: "Cloud & Infrastructure",
+    desc: "含操作系统、中枢系统等底层技术。从内核到分布式中枢，从零做出难而正确的系统。",
+  },
+  {
+    code: "F/03",
+    name: "区块链计算",
+    en: "Blockchain Computing",
+    desc: "把区块链当作一类分布式计算与信任基础设施来研究，验证其真实可落地的边界。",
+  },
+  {
+    code: "F/04",
+    name: "大数据",
+    en: "Big Data",
+    desc: "面向海量数据的存储、计算与调度系统研究，关注底层机制而非上层拼装。",
+  },
+  {
+    code: "F/05",
+    name: "安全",
+    en: "Security",
+    desc: "系统与网络安全研究。以键盘为剑，守护而非破坏——红客精神是这条线的底色。",
+  },
+];
+
+const ethos = [
+  {
+    code: "curiosity-driven",
+    title: "好奇心驱动，而非任务驱动",
+    desc: "做研究是因为想搞懂一个系统究竟是怎么运转的、能不能被做得更好，而不只是完成 KPI。",
+  },
+  {
+    code: "first-principles",
+    title: "第一性原理，刨根问底",
+    desc: "不满足于「跑起来了」——要搞清楚为什么能跑、边界在哪、怎样才能做到极致。",
+  },
+  {
+    code: "down-to-the-metal",
+    title: "享受和底层死磕的过程本身",
+    desc: "内核、协议、分布式系统、编译与运行时，都是可以钻研一辈子的题目。",
+  },
+  {
+    code: "small-and-sharp",
+    title: "小而精悍，反官僚、反臃肿",
+    desc: "效率优先于流程，产出优先于汇报。团队保持小，问题保持硬。",
+  },
+];
+
+const title = "竺砥科技 — 从 0 到 1 的硬核底层技术研究 | AIRDB Tech";
+const description =
+  "竺砥科技（airdb.tech）是一家以极客与黑客精神驱动的硬核底层技术研究公司，专注操作系统、中枢系统等基础架构级技术的从 0 到 1 攻坚，止于可用与可落地，以技术赋能千行百业。";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "竺砥科技",
+  alternateName: "AIRDB Tech",
+  url: "https://airdb.tech/",
+  email: "info@airdb.com",
+  slogan: "Frontier tech, from 0 to 1 — proven, then handed off.",
+  description,
+  knowsAbout: [
+    "Operating Systems",
+    "Distributed Systems",
+    "AI",
+    "Cloud Infrastructure",
+    "Blockchain Computing",
+    "Big Data",
+    "Security",
+  ],
+};
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a0f0c" />
+    <title>{title}</title>
+    <link rel="canonical" href="https://airdb.tech/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://airdb.tech/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="竺砥科技 AIRDB Tech" />
+    <meta property="og:image" content="https://airdb.tech/images/og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="竺砥科技 AIRDB.TECH — 从 0 到 1 的硬核底层技术研究" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/ibm-plex-mono-600-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.json" />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#who">跳到正文</a>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="竺砥科技 AIRDB.TECH 首页">
+        <strong>AIRDB</strong><span>.</span><em>TECH</em><span class="cursor" aria-hidden="true"></span>
+      </a>
+      <details class="site-nav">
+        <summary aria-label="打开导航菜单"><span class="menu-icon" aria-hidden="true"></span></summary>
+        <nav aria-label="主导航">
+          <a href="#who">定位</a>
+          <a href="#scope">边界</a>
+          <a href="#fields">领域</a>
+          <a href="#ethos">气质</a>
+          <a href="#value">价值</a>
+          <a class="nav-cta" href="#contact">联系我们 <span aria-hidden="true">→</span></a>
+        </nav>
+      </details>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="hero-kicker">Frontier tech, from 0 to 1 — proven, then handed off.</p>
+          <h1>把硬核技术，<br />从 <span class="accent">0</span> 做到 <span class="accent">1</span>。</h1>
+          <p class="hero-sub">
+            竺砥科技是一家以极客与黑客精神驱动的<strong>底层技术研究公司</strong>，专注操作系统、中枢系统等基础架构级难题的原创性攻坚。我们证明一件事<strong>能做出来、能用、能落地</strong>——然后把规模化交给世界。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#scope">了解我们的边界 <span aria-hidden="true">→</span></a>
+            <a class="button button-quiet" href="#fields">研究领域 <span aria-hidden="true">↘</span></a>
+          </div>
+          <dl class="hero-stats">
+            <div><dt>0 → 1</dt><dd>唯一的研究区间</dd></div>
+            <div><dt>05</dt><dd>核心研究领域</dd></div>
+            <div><dt>02</dt><dd>交付标准：可用 · 可落地</dd></div>
+          </dl>
+          <p class="hero-note">我们不做面向消费者的产品，也不追求规模化商业落地——那是别人的进程。</p>
+        </div>
+
+        <div class="hero-term" aria-label="终端演示：竺砥科技的自我介绍">
+          <div class="term-bar">
+            <i></i><i></i><i></i>
+            <span class="term-title">root@airdb.tech: ~</span>
+          </div>
+          <pre class="term-body" id="term">{termLines.map((line) => (
+            <span class="term-line">{line.map((seg) => <span class={seg.cls}>{seg.text}</span>)}{"\n"}</span>
+          ))}<span class="p">$ </span><span class="term-caret" aria-hidden="true"></span></pre>
+        </div>
+      </section>
+
+      <section class="section" id="who">
+        <div class="section-inner">
+          <p class="section-tag"><span class="idx">00</span> WHO WE ARE</p>
+          <h2>硬核技术的探路者<span class="en">Pathfinder of hard tech</span></h2>
+          <p class="lede reveal">
+            竺砥科技不做面向消费者的产品，也不追求规模化商业落地。我们只做一件事：<strong>从 0 到 1 的原创性研究与技术验证</strong>——专注操作系统、中枢系统等底层技术，以及 AI、云计算、区块链计算、大数据、安全等前沿方向。
+          </p>
+          <p class="lede reveal">
+            证明一件事「能做出来、能用、能落地」，是我们的全部使命；把它规模化、产品化、商业化，不是。边界清楚，才能把难的事情做深。
+          </p>
+          <div class="benchmark reveal">
+            <p>
+              我们对技术深度的要求，是<b>大厂基础设施研究部门的水位</b>——像 Google、百度、腾讯、字节跳动、阿里巴巴内部真正啃硬骨头的基础架构与前沿研究团队。不是拼凑开源组件做集成，而是有能力从底层原理出发，独立攻克系统级难题。
+            </p>
+            <span class="src">BENCHMARK // BIG-TECH INFRASTRUCTURE RESEARCH</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="scope">
+        <div class="section-inner">
+          <p class="section-tag"><span class="idx">01</span> SCOPE</p>
+          <h2>只做 0 → 1，止于可用与可落地<span class="en">0 → 1 only. Proven, then handed off.</span></h2>
+          <p class="lede">
+            这是竺砥区别于产品公司、工程公司最核心的边界。一旦技术被验证<strong>可用、可落地</strong>，竺砥的阶段性使命即完成。
+          </p>
+
+          <div class="rail reveal">
+            <div class="rail-track">
+              <div class="rail-side ours">
+                <div class="rail-head"><b>竺砥的进程</b><span>OUR PROCESS // 0 → 1</span></div>
+                <div class="rail-line" aria-hidden="true">
+                  <span class="rail-node">0</span>
+                  <span class="rail-seg"></span>
+                  <span class="rail-node one">1</span>
+                </div>
+                <ul class="rail-steps">
+                  <li>从第一性原理出发选题：难，且正确</li>
+                  <li>从无到有攻克一项硬核技术，原型可运行</li>
+                  <li>完成可用性与可落地性两项验证</li>
+                </ul>
+              </div>
+              <div class="rail-handoff"><span>HANDOFF · 交接</span></div>
+              <div class="rail-side theirs">
+                <div class="rail-head"><b>后续团队与伙伴</b><span>NOT OUR PROCESS // 1 → N</span></div>
+                <div class="rail-line" aria-hidden="true">
+                  <span class="rail-node ghost">1</span>
+                  <span class="rail-seg ghost"></span>
+                  <span class="rail-node ghost">N</span>
+                </div>
+                <ul class="rail-steps">
+                  <li>规模化：把已验证的技术做大做强</li>
+                  <li>产品化与商业化，走向市场</li>
+                </ul>
+              </div>
+            </div>
+            <p class="rail-note">竺砥止步于 <b>1</b>。越过这条线的一切，交由后续团队或合作伙伴推进。</p>
+          </div>
+
+          <div class="stops">
+            <div class="stop reveal">
+              <code>STOP / 01</code>
+              <h3>可用性验证</h3>
+              <p>PoC / Feasibility——证明技术路径可行、原型可运行。</p>
+            </div>
+            <div class="stop reveal">
+              <code>STOP / 02</code>
+              <h3>可落地性验证</h3>
+              <p>Landability——证明技术具备走向实际场景的条件。</p>
+            </div>
+            <div class="stop reveal">
+              <code>STOP / 03</code>
+              <h3>交接</h3>
+              <p>阶段性使命完成，规模化与产品化交由后续团队或合作伙伴。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="fields">
+        <div class="section-inner">
+          <p class="section-tag"><span class="idx">02</span> RESEARCH FIELDS</p>
+          <h2>核心研究领域<span class="en">IT infrastructure &amp; frontier</span></h2>
+          <p class="lede">研发以 IT 底层与前沿基础设施为核心。每个领域都遵循同一条纪律：只做 0 → 1，止于可用与可落地。</p>
+          <div class="fields">
+            {fields.map((f) => (
+              <article class="field reveal">
+                <code>{f.code}</code>
+                <h3>{f.name}</h3>
+                <span class="en-name">{f.en}</span>
+                <p>{f.desc}</p>
+              </article>
+            ))}
+            <article class="field ext reveal">
+              <code>X / AI+X</code>
+              <h3>跨界融合 · 延展方向</h3>
+              <span class="en-name">AI + X</span>
+              <p>真正前沿的突破往往发生在交叉地带。以 IT／AI 为底座，向材料科学、生物科学等前沿技术领域渗透。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="ethos">
+        <div class="section-inner">
+          <p class="section-tag"><span class="idx">03</span> ETHOS</p>
+          <h2>极客范，黑客范<span class="en">Geek &amp; hacker spirit</span></h2>
+          <p class="lede">竺砥的团队文化由极客与黑客精神驱动——这不是口号，是选题、招人、做事的过滤器。</p>
+          <div class="ethos-grid">
+            {ethos.map((e) => (
+              <article class="ethos reveal">
+                <code><b>#</b> {e.code}</code>
+                <h3>{e.title}</h3>
+                <p>{e.desc}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="value">
+        <div class="section-inner">
+          <p class="section-tag"><span class="idx">04</span> VALUE</p>
+          <h2>技术赋能千行百业<span class="en">Enabling every industry</span></h2>
+          <p class="value-line reveal">
+            我们研发的底层技术、基础设施和前沿能力，最终指向同一个目的——<em>让各行各业用上最前沿的技术能力</em>。
+          </p>
+          <p class="value-sub reveal">
+            竺砥本质上是一家 IT 技术公司，但我们的价值不止于技术本身。被验证「可用、可落地」的技术，会经由后续团队与合作伙伴，进入真实的行业场景。
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="section-inner">
+          <p class="section-tag"><span class="idx">05</span> CONTACT</p>
+          <div class="contact-panel reveal">
+            <div>
+              <h3>手上有难而正确的问题？</h3>
+              <p>
+                如果你有值得从 0 到 1 攻坚的底层技术难题，或者希望已验证的技术在你的行业落地，欢迎邮件联系。
+              </p>
+            </div>
+            <a class="contact-mail" href="mailto:info@airdb.com">info@airdb.com</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="#top"><strong>AIRDB</strong><span>.</span><em>TECH</em></a>
+            <p>竺砥科技——从 0 到 1 的硬核底层技术研究。<br />Frontier tech, from 0 to 1 — proven, then handed off.</p>
+          </div>
+          <div class="footer-col">
+            <h4>站内</h4>
+            <ul>
+              <li><a href="#who">定位</a></li>
+              <li><a href="#scope">边界</a></li>
+              <li><a href="#fields">研究领域</a></li>
+              <li><a href="#ethos">气质</a></li>
+              <li><a href="#contact">联系</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>AIRDB 生态</h4>
+            <ul>
+              <li><a href="https://airdb.com">主站<code>airdb.com</code></a></li>
+              <li><a href="https://airdb.group">集团<code>airdb.group</code></a></li>
+              <li><a href="https://airdb.fund">基金会<code>airdb.fund</code></a></li>
+              <li><a href="https://airdb.team">团队网络<code>airdb.team</code></a></li>
+            </ul>
+            <p class="footer-eco-note">竺砥科技（airdb.tech）是 AIRDB 生态中的技术研究单元。</p>
+          </div>
+        </div>
+        <div class="footer-meta">
+          <span>© 2026 竺砥科技 · AIRDB Tech</span>
+          <span>
+            <a href="/humans.txt">humans.txt</a> · <a href="/.well-known/security.txt">security.txt</a>
+          </span>
+          <span># 只承诺已验证的事。</span>
+        </div>
+      </div>
+    </footer>
+
+    <script type="application/json" id="term-data" set:html={JSON.stringify(termLines)} />
+    <script>
+      // 终端打字机：静态内容已在 HTML 里；仅在允许动效时清空重打
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const term = document.getElementById("term");
+      const data = document.getElementById("term-data");
+      if (!reduced && term && data && "IntersectionObserver" in window) {
+        const lines: { cls: string; text: string }[][] = JSON.parse(data.textContent || "[]");
+        const type = async () => {
+          term.innerHTML = "";
+          const caret = document.createElement("span");
+          caret.className = "term-caret";
+          caret.setAttribute("aria-hidden", "true");
+          term.append(caret);
+          const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+          for (const line of lines) {
+            for (const seg of line) {
+              const span = document.createElement("span");
+              span.className = seg.cls;
+              term.insertBefore(span, caret);
+              const instant = seg.cls === "out" || seg.cls === "hi";
+              if (instant) {
+                // 命令输出整段浮现，只有命令本身逐字敲出——更像真终端
+                span.textContent = seg.text;
+                await wait(90);
+              } else {
+                for (const ch of seg.text) {
+                  span.textContent += ch;
+                  await wait(26);
+                }
+              }
+            }
+            term.insertBefore(document.createTextNode("\n"), caret);
+            await wait(200);
+          }
+          const prompt = document.createElement("span");
+          prompt.className = "p";
+          prompt.textContent = "$ ";
+          term.insertBefore(prompt, caret);
+        };
+        const io = new IntersectionObserver(
+          (entries) => {
+            if (entries.some((e) => e.isIntersecting)) {
+              io.disconnect();
+              type();
+            }
+          },
+          { threshold: 0.4 },
+        );
+        io.observe(term);
+      }
+
+      // 滚动浮现：无 JS 时全部默认可见
+      if (!reduced && "IntersectionObserver" in window) {
+        document.documentElement.classList.add("reveal-armed");
+        const ro = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                ro.unobserve(e.target);
+              }
+            }
+          },
+          { threshold: 0.12 },
+        );
+        document.querySelectorAll(".reveal").forEach((el) => ro.observe(el));
+      }
+
+      // 移动端导航：点击链接后收起菜单
+      const nav = document.querySelector<HTMLDetailsElement>(".site-nav");
+      nav?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => nav.removeAttribute("open")));
+    </script>
+  </body>
+</html>

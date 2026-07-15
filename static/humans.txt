@@ -1,0 +1,17 @@
+/* TEAM */
+Founder: 阿正_Dean
+Handle: root@airdb
+Role: Founder / 全栈黑客
+Motto: 以键盘为剑，守护而非破坏。
+
+/* COMPANY */
+Name: 竺砥科技 / AIRDB Tech
+Mission: 从 0 到 1 攻坚硬核底层技术，止于可用与可落地。
+Scope: 0 → 1 only. 1 → N is somebody else's process.
+
+/* SITE */
+Language: 中文
+Stack: Astro, TypeScript
+Fonts: IBM Plex Mono (self-hosted), system CJK sans
+Standards: HTML5, CSS3, 只承诺已验证的事
+Contact: info@airdb.com

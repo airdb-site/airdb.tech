@@ -1,0 +1,42 @@
+---
+import "../styles/global.css";
+
+const title = "404 — 页面未通过可用性验证 | 竺砥科技 AIRDB Tech";
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0a0f0c" />
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="竺砥科技 AIRDB.TECH 首页">
+        <strong>AIRDB</strong><span>.</span><em>TECH</em><span class="cursor" aria-hidden="true"></span>
+      </a>
+    </header>
+
+    <main class="panic">
+      <div class="panic-box">
+        <p class="panic-code">404</p>
+        <h1>这条路径没有通过可用性验证。</h1>
+        <pre aria-hidden="true"><span class="p">$</span> curl -i https://airdb.tech<span id="panic-path">/…</span>
+HTTP/2 404
+<span class="hi">kernel: PANIC</span> — page not found at requested address
+kernel: no such node, nothing was mounted here
+hint:   0 → 1 之外的进程，不在本机运行</pre>
+        <a class="button button-primary" href="/">返回首页 <span aria-hidden="true">→</span></a>
+      </div>
+    </main>
+
+    <script>
+      const el = document.getElementById("panic-path");
+      if (el) el.textContent = location.pathname;
+    </script>
+  </body>
+</html>

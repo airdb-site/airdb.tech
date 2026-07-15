@@ -1,0 +1,9 @@
+/.idea
+/.vscode
+node_modules
+nohup.out
+.DS_Store
+trace.out
+.astro
+.pnpm-store
+dist
