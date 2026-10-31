@@ -25,3 +25,21 @@ make build     # pnpm build → dist/
 ## 联系
 
 info@airdb.com
+
+## 本地验证
+
+```bash
+pnpm check
+pnpm build
+pnpm preview --host 127.0.0.1 --port 4323
+pnpm test:browser
+```
+
+浏览器回归默认使用本机 Google Chrome，覆盖六种视口、有无 JavaScript、导航、键盘焦点、减少动态效果、内容显现与 404。也可安装 Playwright Chromium 后运行：
+
+```bash
+pnpm exec playwright install chromium
+BROWSER_CHANNEL=chromium pnpm test:browser
+```
+
+`BASE_URL` 可指定其他本地预览地址。无障碍扫描为自动检查，不能替代屏幕阅读器人工验证。

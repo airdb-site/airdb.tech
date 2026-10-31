@@ -77,6 +77,15 @@ const ethos = [
   },
 ];
 
+const navLinks = [
+  ["#who", "定位"],
+  ["#scope", "边界"],
+  ["#fields", "领域"],
+  ["#ethos", "气质"],
+  ["#value", "价值"],
+  ["#contact", "联系我们 →"],
+];
+
 const title = "竺砥科技 — 从 0 到 1 的硬核底层技术研究 | AIRDB TECH";
 const description =
   "竺砥科技（airdb.tech）是一家以极客与黑客精神驱动的硬核底层技术研究公司，专注操作系统、中枢系统等基础架构级技术的从 0 到 1 攻坚，止于可用与可落地，以技术赋能千行百业。";
@@ -133,15 +142,19 @@ const structuredData = {
       <a class="brand" href="#top" aria-label="竺砥科技 AIRDB.TECH 首页">
         <strong>AIRDB</strong><span>.</span><em>TECH</em><span class="cursor" aria-hidden="true"></span>
       </a>
-      <details class="site-nav">
-        <summary aria-label="打开导航菜单"><span class="menu-icon" aria-hidden="true"></span></summary>
+      <div class="desktop-nav">
         <nav aria-label="主导航">
-          <a href="#who">定位</a>
-          <a href="#scope">边界</a>
-          <a href="#fields">领域</a>
-          <a href="#ethos">气质</a>
-          <a href="#value">价值</a>
-          <a class="nav-cta" href="#contact">联系我们 <span aria-hidden="true">→</span></a>
+          {navLinks.map(([href, label]) => (
+            <a href={href} class:list={{ "nav-cta": href === "#contact" }}>{label}</a>
+          ))}
+        </nav>
+      </div>
+      <details class="site-nav">
+        <summary aria-label="导航菜单"><span class="menu-icon" aria-hidden="true"></span></summary>
+        <nav aria-label="主导航">
+          {navLinks.map(([href, label]) => (
+            <a href={href} class:list={{ "nav-cta": href === "#contact" }}>{label}</a>
+          ))}
         </nav>
       </details>
     </header>
@@ -433,9 +446,20 @@ const structuredData = {
         document.querySelectorAll(".reveal").forEach((el) => ro.observe(el));
       }
 
-      // 移动端导航：点击链接后收起菜单
+      // Close the mobile menu without leaving keyboard focus in hidden content.
       const nav = document.querySelector<HTMLDetailsElement>(".site-nav");
-      nav?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => nav.removeAttribute("open")));
+      nav?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => {
+        nav.open = false;
+        const target = document.querySelector<HTMLElement>(a.hash);
+        target?.setAttribute("tabindex", "-1");
+        target?.focus({ preventScroll: true });
+      }));
+      nav?.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && nav.open) {
+          nav.open = false;
+          nav.querySelector("summary")?.focus();
+        }
+      });
     </script>
   </body>
 </html>
