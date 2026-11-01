@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://airdb.tech/sitemap-index.xml

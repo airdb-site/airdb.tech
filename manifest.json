@@ -1,0 +1,16 @@
+{
+  "name": "竺砥科技 AIRDB TECH",
+  "short_name": "AIRDB TECH",
+  "description": "竺砥科技（airdb.tech）— 从 0 到 1 的硬核底层技术研究公司。",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "theme_color": "#0a0f0c",
+  "background_color": "#0a0f0c",
+  "display": "standalone"
+}
